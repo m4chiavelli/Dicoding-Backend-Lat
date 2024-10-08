@@ -88,6 +88,16 @@ const getNoteByIdHandler = (request, h) => {
 const editNoteByIdHandler = (request, h) => {
   const { id } = request.params; // mengambil nilai id dari request.params
 
+  // Jika tidak ada payload yang dikirimkan oleh client, kirimkan respons gagal
+  if (!request.payload) {
+    const response = h.response({
+      status: "fail",
+      message: "Gagal memperbarui catatan. Data tidak valid.",
+    });
+    response.code(400);
+    return response;
+  }
+
   const { title, tags, body } = request.payload; // mengambil nilai title, tags, dan body dari request.payload
   const updatedAt = new Date().toISOString(); // membuat waktu ketika catatan diperbarui
 
@@ -159,4 +169,4 @@ module.exports = {
   getNoteByIdHandler,
   editNoteByIdHandler,
   deleteNoteByIdHandler,
-};
+}; // export semua fungsi handler

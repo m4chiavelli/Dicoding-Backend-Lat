@@ -2,6 +2,7 @@ const {
   addNoteHandler,
   getAllNotesHandler,
   getNoteByIdHandler,
+  editNoteByIdHandler,
   deleteNoteByIdHandler,
 } = require("./handler");
 
@@ -30,7 +31,7 @@ const routes = [
   {
     method: "PUT",
     path: "/notes/{id}",
-    handler: addNoteHandler,
+    handler: editNoteByIdHandler,
   },
 
   // Menyimpan route untuk menghapus catatan berdasarkan id
